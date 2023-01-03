@@ -12,7 +12,7 @@ function App() {
 	return (
 		<div className="App">
 			{adminIsLoggedIn ? (
-				<h1 className="adminMode">Admin Mode</h1>
+				<h1>(((Admin Mode)))</h1>
 			) : (
 				<h1>Info Site</h1>
 			)}

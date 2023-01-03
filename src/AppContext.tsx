@@ -75,6 +75,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 			setAdminIsLoggedIn(false);
 		}
 		setAppMessage(_appMessage);
+		setPassword('');
 	};
 
 	const deleteAppMessage = () => {
