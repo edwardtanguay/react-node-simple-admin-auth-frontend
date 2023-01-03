@@ -4,33 +4,48 @@ import axios from 'axios';
 
 interface IAppContext {
 	appTitle: string;
-	testMessage: string;
+	loginAsAdmin: () => void;
+	password: string;
+	setPassword: (password: string) => void;
 }
 
 interface IAppProvider {
 	children: React.ReactNode;
 }
 
-const backendUrl = 'http://localhost:3611'; 
+const backendUrl = 'http://localhost:3611';
 
 export const AppContext = createContext<IAppContext>({} as IAppContext);
 
 export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 	const appTitle = 'Info Site';
-	const [testMessage, setTestMessage] = useState('');
+	const [password, setPassword] = useState('');
 
-	useEffect(() => {
+	const loginAsAdmin = () => {
 		(async () => {
-			const data = (await axios.get(`${backendUrl}/test`)).data;
-			setTestMessage(data.message);
+			(
+				await axios.post(
+					`${backendUrl}/login`,
+					{
+						password,
+					},
+					{
+						headers: {
+							'Content-Type': 'application/json',
+						},
+					}
+				)
+			).data;
 		})();
-	}, []);
+	};
 
 	return (
 		<AppContext.Provider
 			value={{
 				appTitle,
-				testMessage
+				loginAsAdmin,
+				password,
+				setPassword,
 			}}
 		>
 			{children}
