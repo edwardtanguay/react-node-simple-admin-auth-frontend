@@ -5,6 +5,7 @@ import axios from 'axios';
 interface IAppContext {
 	appTitle: string;
 	loginAsAdmin: () => void;
+	logoutAsAdmin: () => void;
 	password: string;
 	setPassword: (password: string) => void;
 	appMessage: string;
@@ -65,11 +66,16 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 		setAppMessage('');
 	};
 
+	const logoutAsAdmin = () => {
+		setAdminIsLoggedIn(false);
+	}
+
 	return (
 		<AppContext.Provider
 			value={{
 				appTitle,
 				loginAsAdmin,
+				logoutAsAdmin,
 				password,
 				setPassword,
 				appMessage,

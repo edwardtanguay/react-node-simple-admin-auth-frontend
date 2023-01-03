@@ -3,7 +3,7 @@ import { AppContext } from '../AppContext';
 import { Helmet } from 'react-helmet';
 
 export const PageAdmin = () => {
-	const { appTitle, loginAsAdmin, password, setPassword, adminIsLoggedIn } =
+	const { appTitle, loginAsAdmin, password, setPassword, adminIsLoggedIn, logoutAsAdmin } =
 		useContext(AppContext);
 
 	return (
@@ -12,7 +12,7 @@ export const PageAdmin = () => {
 				<title>{appTitle} - Admin</title>
 			</Helmet>
 			{adminIsLoggedIn ? (
-				<p>logged in</p>
+				<p><button className="logout" onClick={logoutAsAdmin}>Logout</button></p>
 			) : (
 				<p>
 					Identify as admin:{' '}
