@@ -7,6 +7,8 @@ interface IAppContext {
 	loginAsAdmin: () => void;
 	password: string;
 	setPassword: (password: string) => void;
+	appMessage: string;
+	deleteAppMessage: () => void;
 }
 
 interface IAppProvider {
@@ -20,23 +22,46 @@ export const AppContext = createContext<IAppContext>({} as IAppContext);
 export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 	const appTitle = 'Info Site';
 	const [password, setPassword] = useState('');
+	const [adminIsLoggedIn, setAdminIsLoggedIn] = useState(false);
+	const [appMessage, setAppMessage] = useState('');
 
-	const loginAsAdmin = () => {
-		(async () => {
-			(
-				await axios.post(
-					`${backendUrl}/login`,
-					{
-						password,
+	const loginAsAdmin = async () => {
+		let _appMessage = '';
+		try {
+			const res = await axios.post(
+				`${backendUrl}/login`,
+				{
+					password,
+				},
+				{
+					headers: {
+						'Content-Type': 'application/json',
 					},
-					{
-						headers: {
-							'Content-Type': 'application/json',
-						},
-					}
-				)
-			).data;
-		})();
+				}
+			);
+			setAdminIsLoggedIn(true);
+			_appMessage = 'Welcome back admin.';
+		} catch (e: any) {
+			switch (e.code) {
+				case 'ERR_BAD_REQUEST':
+					_appMessage =
+						'Sorry, credentials were incorrect, please attempt login again.';
+					break;
+				case 'ERR_NETWORK':
+					_appMessage =
+						"Sorry, we aren't able to process your request at this time.";
+					break;
+				default:
+					_appMessage = `Sorry, there was an unknown error (${e.code}).`;
+					break;
+			}
+			setAdminIsLoggedIn(false);
+		}
+		setAppMessage(_appMessage);
+	};
+
+	const deleteAppMessage = () => {
+		setAppMessage('');
 	};
 
 	return (
@@ -46,6 +71,8 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 				loginAsAdmin,
 				password,
 				setPassword,
+				appMessage,
+				deleteAppMessage,
 			}}
 		>
 			{children}

@@ -10,6 +10,22 @@ body {
 		color: rgb(209, 168, 85);
 	}
 
+	.appMessage {
+		background-color: rgb(204, 204, 84);
+		display: inline-block;
+		color: #333;
+		padding: .3rem .5rem;
+		margin-bottom: 1rem;
+		border-radius: .2rem;
+		.inner {
+			display: flex;
+			gap: .5rem;
+			.messageText {
+				margin-top: .1rem;
+			}
+		}
+	}
+
 	nav {
 		background-color: #222;
 		padding: .5rem;

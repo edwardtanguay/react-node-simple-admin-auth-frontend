@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { AppContext } from './AppContext';
 import './App.scss';
 import { NavLink, Routes, Route, Navigate } from 'react-router-dom';
 import { PageWelcome } from './pages/PageWelcome';
@@ -5,9 +7,18 @@ import { PageInfo } from './pages/PageInfo';
 import { PageAdmin } from './pages/PageAdmin';
 
 function App() {
+	const { appMessage, deleteAppMessage } = useContext(AppContext);
 	return (
 		<div className="App">
 			<h1>Info Site</h1>
+			{appMessage && (
+				<div className="appMessage">
+					<div className="inner">
+						<div className="messageText">{appMessage}</div>{' '}
+						<button onClick={deleteAppMessage}>X</button>
+					</div>
+				</div>
+			)}
 			<nav>
 				<NavLink to="/welcome">Welcome</NavLink>
 				<NavLink to="/info">Info</NavLink>
