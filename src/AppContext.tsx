@@ -9,6 +9,7 @@ interface IAppContext {
 	setPassword: (password: string) => void;
 	appMessage: string;
 	deleteAppMessage: () => void;
+	adminIsLoggedIn: boolean;
 }
 
 interface IAppProvider {
@@ -40,7 +41,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 				}
 			);
 			setAdminIsLoggedIn(true);
-			_appMessage = 'Welcome back admin.';
+			_appMessage = 'Welcome back admin. No new messages.';
 		} catch (e: any) {
 			switch (e.code) {
 				case 'ERR_BAD_REQUEST':
@@ -73,6 +74,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 				setPassword,
 				appMessage,
 				deleteAppMessage,
+				adminIsLoggedIn,
 			}}
 		>
 			{children}

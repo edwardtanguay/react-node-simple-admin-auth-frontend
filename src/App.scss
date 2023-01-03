@@ -9,6 +9,9 @@ body {
 	h1 {
 		color: rgb(209, 168, 85);
 	}
+	h1.adminMode {
+		color: tomato;
+	}
 
 	.appMessage {
 		background-color: rgb(204, 204, 84);

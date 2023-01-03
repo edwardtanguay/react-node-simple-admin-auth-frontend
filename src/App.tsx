@@ -7,10 +7,15 @@ import { PageInfo } from './pages/PageInfo';
 import { PageAdmin } from './pages/PageAdmin';
 
 function App() {
-	const { appMessage, deleteAppMessage } = useContext(AppContext);
+	const { appMessage, deleteAppMessage, adminIsLoggedIn } =
+		useContext(AppContext);
 	return (
 		<div className="App">
-			<h1>Info Site</h1>
+			{adminIsLoggedIn ? (
+				<h1 className="adminMode">Admin Mode</h1>
+			) : (
+				<h1>Info Site</h1>
+			)}
 			{appMessage && (
 				<div className="appMessage">
 					<div className="inner">
