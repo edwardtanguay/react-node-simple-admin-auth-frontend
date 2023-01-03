@@ -27,10 +27,22 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 	const [adminIsLoggedIn, setAdminIsLoggedIn] = useState(false);
 	const [appMessage, setAppMessage] = useState('');
 
+	useEffect(() => {
+		(async () => {
+			try {
+				const data = (await axios.post(`${backendUrl}/currentuser`,{ withCredentials: true }))
+					.data;
+				console.log(data);
+			} catch (e) {
+				console.log('error');
+			}
+		})();
+	}, []);
+
 	const loginAsAdmin = async () => {
 		let _appMessage = '';
 		try {
-			const res = await axios.post(
+			await axios.post(
 				`${backendUrl}/login`,
 				{
 					password,
@@ -39,6 +51,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 					headers: {
 						'Content-Type': 'application/json',
 					},
+					withCredentials: true,
 				}
 			);
 			setAdminIsLoggedIn(true);
@@ -68,7 +81,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 
 	const logoutAsAdmin = () => {
 		setAdminIsLoggedIn(false);
-	}
+	};
 
 	return (
 		<AppContext.Provider
