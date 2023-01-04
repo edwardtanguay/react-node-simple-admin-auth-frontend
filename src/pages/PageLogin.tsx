@@ -23,7 +23,7 @@ export const PageLogin = () => {
 	return (
 		<div className="pageLogin">
 			<Helmet>
-				<title>{appTitle} - Admin</title>
+				<title>{appTitle} - Login</title>
 			</Helmet>
 			{adminIsLoggedIn ? (
 				<p>

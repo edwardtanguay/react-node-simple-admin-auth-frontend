@@ -30,7 +30,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 	useEffect(() => {
 		(async () => {
 			try {
-				const user = (await axios.post(`${backendUrl}/currentuser`, {}, { withCredentials: true }))
+				const user = (await axios.get(`${backendUrl}/currentuser`, { withCredentials: true }))
 					.data;
 				if (user === 'admin') {
 					setAdminIsLoggedIn(true);

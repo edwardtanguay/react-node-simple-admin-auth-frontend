@@ -2,8 +2,8 @@
 - x no message on good login
 - x XML-Verarbeitung bug
 - x redirect on login
-- .. when logged in, Login is then Logout (a different page)
-- on logout, actually logout from backend
+- x when logged in, Login is then Logout (a different page)
+- .. on logout, actually logout from backend
 - show extra page and context when logged in
 - focus cursor in box
 - enable admin to edit welcome message (save as text file)
