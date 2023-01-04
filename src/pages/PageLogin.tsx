@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { AppContext } from '../AppContext';
 import { Helmet } from 'react-helmet';
 
-export const PageAdmin = () => {
+export const PageLogin = () => {
 	const { appTitle, loginAsAdmin, password, setPassword, adminIsLoggedIn, logoutAsAdmin } =
 		useContext(AppContext);
 
@@ -22,7 +22,7 @@ export const PageAdmin = () => {
 						onChange={(e) => setPassword(e.target.value)}
 					/>{' '}
 					<button onClick={loginAsAdmin} type="button">
-						Confirm
+						Login
 					</button>
 				</p>
 			)}

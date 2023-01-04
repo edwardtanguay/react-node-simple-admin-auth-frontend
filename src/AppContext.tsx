@@ -57,7 +57,6 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 				}
 			);
 			setAdminIsLoggedIn(true);
-			_appMessage = 'Welcome back admin. No new messages.';
 		} catch (e: any) {
 			switch (e.code) {
 				case 'ERR_BAD_REQUEST':

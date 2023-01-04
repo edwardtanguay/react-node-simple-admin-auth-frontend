@@ -1,0 +1,10 @@
+- x Admin to Login
+- x no message on good login
+- .. redirect on login
+- when logged in, Login is then Logout (a different page)
+- focus cursor in box
+- put in wait cursor
+- take out any blinking
+
+
+- change 10 seconds to 5 minutes, make easy to change

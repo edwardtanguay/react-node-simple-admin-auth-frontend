@@ -4,7 +4,7 @@ import './App.scss';
 import { NavLink, Routes, Route, Navigate } from 'react-router-dom';
 import { PageWelcome } from './pages/PageWelcome';
 import { PageInfo } from './pages/PageInfo';
-import { PageAdmin } from './pages/PageAdmin';
+import { PageLogin } from './pages/PageLogin';
 
 function App() {
 	const { appMessage, deleteAppMessage, adminIsLoggedIn } =
@@ -12,7 +12,7 @@ function App() {
 	return (
 		<div className="App">
 			{adminIsLoggedIn ? (
-				<h1>(((Admin Mode)))</h1>
+				<h1>(ADMIN MODE)</h1>
 			) : (
 				<h1>Info Site</h1>
 			)}
@@ -27,13 +27,13 @@ function App() {
 			<nav>
 				<NavLink to="/welcome">Welcome</NavLink>
 				<NavLink to="/info">Info</NavLink>
-				<NavLink to="/admin">Admin</NavLink>
+				<NavLink to="/login">Login</NavLink>
 			</nav>
 
 			<Routes>
 				<Route path="/welcome" element={<PageWelcome />} />
 				<Route path="/info" element={<PageInfo />} />
-				<Route path="/admin" element={<PageAdmin />} />
+				<Route path="/login" element={<PageLogin />} />
 				<Route path="/" element={<Navigate to="/welcome" replace />} />
 			</Routes>
 		</div>
