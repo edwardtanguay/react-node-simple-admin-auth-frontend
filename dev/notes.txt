@@ -3,8 +3,11 @@
 - x XML-Verarbeitung bug
 - x redirect on login
 - x when logged in, Login is then Logout (a different page)
-- .. on logout, actually logout from backend
-- show extra page and context when logged in
+- x on logout, actually logout from backend
+- .. show welcome message from data in backend
+	- x backend
+	- .. frontend
+- when logged in, enable edit welcome message
 - focus cursor in box
 - enable admin to edit welcome message (save as text file)
 - put in wait cursor

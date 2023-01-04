@@ -8,7 +8,7 @@ import { PageLogin } from './pages/PageLogin';
 import { PageLogout } from './pages/PageLogout';
 
 function App() {
-	const { appMessage, deleteAppMessage, adminIsLoggedIn } =
+	const { appMessage, deleteAppMessage, adminIsLoggedIn} =
 		useContext(AppContext);
 	return (
 		<div className="App">

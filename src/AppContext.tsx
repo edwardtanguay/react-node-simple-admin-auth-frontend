@@ -11,6 +11,7 @@ interface IAppContext {
 	appMessage: string;
 	deleteAppMessage: () => void;
 	adminIsLoggedIn: boolean;
+	welcomeMessage: string;
 }
 
 interface IAppProvider {
@@ -26,18 +27,28 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 	const [password, setPassword] = useState('');
 	const [adminIsLoggedIn, setAdminIsLoggedIn] = useState(false);
 	const [appMessage, setAppMessage] = useState('');
+	const [welcomeMessage, setWelcomeMessage] = useState('');
 
 	useEffect(() => {
 		(async () => {
 			try {
-				const user = (await axios.get(`${backendUrl}/currentuser`, { withCredentials: true }))
-					.data;
+				const user = (
+					await axios.get(`${backendUrl}/currentuser`, {
+						withCredentials: true,
+					})
+				).data;
 				if (user === 'admin') {
 					setAdminIsLoggedIn(true);
 				}
 			} catch (e) {
 				console.log('no one logged in');
 			}
+		})();
+	}, []);
+
+	useEffect(() => {
+		(async () => {
+			setWelcomeMessage((await axios.get(`${backendUrl}/welcomemessage`)).data);
 		})();
 	}, []);
 
@@ -83,7 +94,20 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 	};
 
 	const logoutAsAdmin = () => {
-		setAdminIsLoggedIn(false);
+		(async () => {
+			try {
+				const user = (
+					await axios.get(`${backendUrl}/logout`, {
+						withCredentials: true,
+					})
+				).data;
+				setAdminIsLoggedIn(false);
+			} catch (e: any) {
+				console.log(
+					`There was a problem with the logout: ${e.message}`
+				);
+			}
+		})();
 	};
 
 	return (
@@ -97,6 +121,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 				appMessage,
 				deleteAppMessage,
 				adminIsLoggedIn,
+				welcomeMessage
 			}}
 		>
 			{children}
