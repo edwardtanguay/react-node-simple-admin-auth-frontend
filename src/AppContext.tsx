@@ -22,7 +22,7 @@ interface IAppProvider {
 	children: React.ReactNode;
 }
 
-const backendUrl = 'http://localhost:3611';
+const backendUrl = 'http://localhost:3511';
 
 export const AppContext = createContext<IAppContext>({} as IAppContext);
 
