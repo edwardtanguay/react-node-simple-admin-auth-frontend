@@ -3,8 +3,15 @@ import { AppContext } from '../AppContext';
 import { Helmet } from 'react-helmet';
 
 export const PageWelcome = () => {
-	const { appTitle, welcomeMessage, adminIsLoggedIn } =
-		useContext(AppContext);
+	const {
+		appTitle,
+		welcomeMessage,
+		setWelcomeMessage,
+		handleSaveWelcomeMessage,
+		adminIsLoggedIn,
+		turnOnWelcomeMessageEditMode,
+		isEditingWelcomeMessage,
+	} = useContext(AppContext);
 
 	return (
 		<div className="pageWelcome">
@@ -12,13 +19,37 @@ export const PageWelcome = () => {
 				<title>{appTitle} - Welcome</title>
 			</Helmet>
 			<p>
-				{welcomeMessage}
-				{adminIsLoggedIn && (
-					<>
-						{' '}
-						<button>Edit</button>
-					</>
-				)}
+				<>
+					{!isEditingWelcomeMessage && <span>{welcomeMessage}</span>}
+					{adminIsLoggedIn && (
+						<>
+							{!isEditingWelcomeMessage ? (
+								<>
+									{' '}
+									<button
+										onClick={turnOnWelcomeMessageEditMode}
+									>
+										Edit
+									</button>
+								</>
+							) : (
+								<>
+									<input
+										className="theWelcomeMessage"
+										type="text"
+										onChange={(e) =>
+											setWelcomeMessage(e.target.value)
+										}
+										value={welcomeMessage}
+									/>{' '}
+									<button onClick={handleSaveWelcomeMessage}>
+										Save
+									</button>
+								</>
+							)}
+						</>
+					)}
+				</>
 			</p>
 		</div>
 	);

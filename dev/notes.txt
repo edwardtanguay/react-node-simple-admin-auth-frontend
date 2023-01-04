@@ -7,10 +7,12 @@
 - x show welcome message from data in backend
 	- x backend
 	- x frontend
+- .. protect change message
 - .. when logged in, enable edit welcome message
 	- x backend
 	- .. frontend
 - focus cursor in box
+- focus in welcome message
 - enable admin to edit welcome message (save as text file)
 - put in wait cursor
 	- disable all buttons
