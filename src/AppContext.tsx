@@ -4,7 +4,7 @@ import axios from 'axios';
 
 interface IAppContext {
 	appTitle: string;
-	loginAsAdmin: () => void;
+	loginAsAdmin: (callback: () => void) => void;
 	logoutAsAdmin: () => void;
 	password: string;
 	setPassword: (password: string) => void;
@@ -41,7 +41,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 		})();
 	}, []);
 
-	const loginAsAdmin = async () => {
+	const loginAsAdmin = async (callback: () => void) => {
 		let _appMessage = '';
 		try {
 			await axios.post(
@@ -57,6 +57,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 				}
 			);
 			setAdminIsLoggedIn(true);
+			callback();
 		} catch (e: any) {
 			switch (e.code) {
 				case 'ERR_BAD_REQUEST':

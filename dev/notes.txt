@@ -1,10 +1,14 @@
 - x Admin to Login
 - x no message on good login
+- .. XML-Verarbeitung bug
 - .. redirect on login
 - when logged in, Login is then Logout (a different page)
+- on logout, actually logout from backend
+- show extra page and context when logged in
 - focus cursor in box
 - put in wait cursor
+	- disable all buttons
 - take out any blinking
-
-
+	- when logged in and refresh (fix and fade in)
 - change 10 seconds to 5 minutes, make easy to change
+- take out all unnecessary code, save somewhere

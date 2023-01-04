@@ -1,10 +1,24 @@
 import { useContext } from 'react';
 import { AppContext } from '../AppContext';
 import { Helmet } from 'react-helmet';
+import { useNavigate } from 'react-router-dom';
 
 export const PageLogin = () => {
-	const { appTitle, loginAsAdmin, password, setPassword, adminIsLoggedIn, logoutAsAdmin } =
-		useContext(AppContext);
+	const {
+		appTitle,
+		loginAsAdmin,
+		password,
+		setPassword,
+		adminIsLoggedIn,
+		logoutAsAdmin,
+	} = useContext(AppContext);
+	const navigate = useNavigate();
+
+	const loginAndRedirect = () => {
+		loginAsAdmin(() => {
+			navigate('/');
+		});
+	}
 
 	return (
 		<div className="pageLogin">
@@ -12,7 +26,11 @@ export const PageLogin = () => {
 				<title>{appTitle} - Admin</title>
 			</Helmet>
 			{adminIsLoggedIn ? (
-				<p><button className="logout" onClick={logoutAsAdmin}>Logout</button></p>
+				<p>
+					<button className="logout" onClick={logoutAsAdmin}>
+						Logout
+					</button>
+				</p>
 			) : (
 				<p>
 					Identify as admin:{' '}
@@ -21,7 +39,7 @@ export const PageLogin = () => {
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 					/>{' '}
-					<button onClick={loginAsAdmin} type="button">
+					<button onClick={loginAndRedirect} type="button">
 						Login
 					</button>
 				</p>
