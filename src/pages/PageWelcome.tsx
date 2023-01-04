@@ -3,14 +3,23 @@ import { AppContext } from '../AppContext';
 import { Helmet } from 'react-helmet';
 
 export const PageWelcome = () => {
-	const { appTitle, welcomeMessage} = useContext(AppContext);
+	const { appTitle, welcomeMessage, adminIsLoggedIn } =
+		useContext(AppContext);
 
 	return (
 		<div className="pageWelcome">
 			<Helmet>
 				<title>{appTitle} - Welcome</title>
 			</Helmet>
-			<p>{welcomeMessage}</p>
+			<p>
+				{welcomeMessage}
+				{adminIsLoggedIn && (
+					<>
+						{' '}
+						<button>Edit</button>
+					</>
+				)}
+			</p>
 		</div>
 	);
 };

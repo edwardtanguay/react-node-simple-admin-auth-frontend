@@ -4,10 +4,12 @@
 - x redirect on login
 - x when logged in, Login is then Logout (a different page)
 - x on logout, actually logout from backend
-- .. show welcome message from data in backend
+- x show welcome message from data in backend
+	- x backend
+	- x frontend
+- .. when logged in, enable edit welcome message
 	- x backend
 	- .. frontend
-- when logged in, enable edit welcome message
 - focus cursor in box
 - enable admin to edit welcome message (save as text file)
 - put in wait cursor
