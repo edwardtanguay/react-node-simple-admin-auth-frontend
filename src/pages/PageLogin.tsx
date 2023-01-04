@@ -36,6 +36,7 @@ export const PageLogin = () => {
 					Identify as admin:{' '}
 					<input
 						type="password"
+						autoFocus
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 					/>{' '}

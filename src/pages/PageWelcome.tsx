@@ -37,6 +37,7 @@ export const PageWelcome = () => {
 									<input
 										className="theWelcomeMessage"
 										type="text"
+										autoFocus
 										onChange={(e) =>
 											setWelcomeMessage(e.target.value)
 										}
